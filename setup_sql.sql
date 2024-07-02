@@ -1,0 +1,1 @@
+create DATABASE namaste_sql;
