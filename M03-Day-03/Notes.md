@@ -1,4 +1,4 @@
-#### Day 3 - [where  between like in operator ]
+#### Day 3 - [where , between ,like ,in]
 
 * where 
 
