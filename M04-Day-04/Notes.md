@@ -6,4 +6,5 @@
     - null == null -> retruns False  
 ### Aggregation 
 - count() , sum() , max() , min() , avg()
-     - sl
+- having will contained the filter with aggregated value - avg() > <some_amount>
+- where will be filtering the data at the row level
