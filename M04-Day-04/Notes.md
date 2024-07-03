@@ -9,9 +9,41 @@
     - null == null -> retruns False  
 ### Aggregation 
 - count() , sum() , max() , min() , avg()
-- having will contained the filter with aggregated value - avg() > <some_amount>
+- All the aggregate function will ignore null values 
+
+```sql
+region,sales
+east  , 100
+east  , null
+east  , 200
+
+Query : select region, avg(sales) from orders group by region 
+Op    : east , 150
+Explain: null row will be ingnored by aggregate function 
+```
+
+```
+region,sales
+east  , 100
+east  , null
+east  , 200
+
+Query : select region, avg(sales) from orders group by region 
+Op    : east , 150
+Explain: null row will be ingnored by aggregate function 
+```
+- count()
+    - count(category)
+    - count(distinct category)
+    - count(1) 
+    - count(*)
+
+- having will contained the filter with aggregated value 
+    - avg(sales) = <some_amount>
+    - sum(sales) = <some_amount>
+    - max(order_date) > <some_date>
 - where will be filtering the data at the row level
-- same query can have where 
+- same query can have where and having 
 
 ### Order of Execution 
 - From 
