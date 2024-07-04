@@ -12,7 +12,7 @@
 - All the aggregate function will ignore null values 
 
 ```sql
-__region,sales__
+region,sales
 east  , 100
 east  , null
 east  , 200
