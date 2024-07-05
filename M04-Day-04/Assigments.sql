@@ -39,7 +39,7 @@ insert into exams values (1,'Chemistry',91),(1,'Physics',91),(1,'Maths',92)
 ,(4,'Chemistry',71),(4,'Physics',54)
 ,(5,'Chemistry',79);
 
--- write a query to find students who have got same marks in Physics and Chemistry.
+-- Write a query to find students who have got same marks in Physics and Chemistry.
 select * from exams WHERE subject in ('Physics', 'Chemistry') ;
 
 SELECT student_id 
@@ -67,7 +67,6 @@ GROUP by sub_category ORDER by total_quatity DESC
 -- 8- write a query to find total sales for each region and ship mode combination for orders in year 2020
 
 select 
-
 region,
 ship_mode,
 sum(sales) total_sales
