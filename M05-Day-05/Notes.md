@@ -1,4 +1,4 @@
-## Day 4 - [Data Aggregation , Joins]
+## Day 5 - [Data Aggregation , Joins]
 
 ### Joins
 - Inner join - common rows of both tables 
