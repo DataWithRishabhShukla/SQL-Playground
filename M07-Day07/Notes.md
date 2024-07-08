@@ -44,6 +44,16 @@ from orders;
 ```
 
 ### NULL handling functions 
+- isnull(name,'unknown')
+- coalesce(name,city,number)
+```sql
+select 
+isnull(name,'unknown'),
+coalesce(name,city,number)
+
+```
+
+
 **union & union all**
 - Number of column and data type of columns should match
 - It will remove the duplicates 
