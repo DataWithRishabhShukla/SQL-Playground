@@ -1,4 +1,4 @@
-## Day 7 - [String Functions , ]
+## Day 7 - [String Functions ,case when ]
 
 ### String Functions
 - STRING_AGG(emp_name,',') list_of_employee
