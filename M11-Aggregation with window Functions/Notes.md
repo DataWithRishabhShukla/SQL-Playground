@@ -1,60 +1,46 @@
-## Day 10 - [window function]
+## Day 11 - [Aggregate window function]
 
-### window function
-* orderby is required
-* 
+### Aggreagte window function
 
-
-### Dimension Modelleing 
-- It will have facts and dimension tables .
-- Before we create tables , we will create conceptual model .[ER Digram]
-- Entity Relationship diagram.
-- Table columns are **attributes** .
-- Each Table is a **entity** . 
-- **In the dimension table we will keep only the attributes**. 
-
-orders   -> Transaction Fact Table
-cutomers -> Dimension Table 
-product  -> Dimension Table 
-
-**Realtionship**
-- Cardinality -> how tables are related ?
-
-- 1 to 1
-- 1 to many 
-- 1 to one or many 
-- 1 to zero or many 
-
-**Key**
-- Primary Key
-- Camposite PK  
-- Foreign Key 
-- A part of composite PK
-
-***Imp Points**
-- Customer can place orders for mutilple location so keeping address as part of  cutomers dimension would not be ideal ?
-
-- We should create another dimnsion for the location 
-
-- int , varchar(20) , decimal(10,2)
-- you can create a identity columns for auto-incrementing . 
+- We don't need order by with max(salary), avg(salary) , sum(salary)
+- any kind of aggregation function do not require the  
+    - sum(salary) over (partition by dept_id) as sum_sal
+    - sum(salary) over (partition by dept_id order by emp_age) as running_sal
+- If we include the order by then it will give us the running salary 
+- Where as with lead, lag we needed the order by clause
 
 ```sql
-create table cutomer(
-    id int indentity(1,1)
-)
+select *
+,sum(salary) over (partition by dept_id) as sum_sal
+,sum(salary) over (partition by dept_id order by emp_id) as dept_running_sal
+,sum(salary) over (order by emp_id) as running_sal
+,max(salary) over (order by emp_id) table_sal_max
+,max(salary) over (partition by dept_id) dept_dept_max
+,max(salary) over (partition by dept_id order by emp_id) running_dept_max
+from employee;
 ```
 
-- We have to populate the dim tables first then fact tables .
+- what's difference between below 
+    ```sql
+        max(salary) over (order by emp_id) table_sal_max,
+        max(salary) over (partition by dept_id) dept_dept_max,
+        max(salary) over (partition by dept_id order by emp_id) running_dept_max 
+    ```
 
+**Running Sum**
+- For any running aggregate function 
+    - sum(salary) over(order by emp_id) running_sum_salary
 
-
-### Questions
-- What are the different types of the fact table ? i.e transaction table 
-
+**Rolling Sum**
+- For any rolling aggregate function 
+    - sum(salary) over(order by emp_id rows between 2 preceding and current row) as rolling_salary
+    - rows between <> and <>
+    - current row 
+    - 2 preceding 
+    - order by is required
 ```sql
-ROW_NUMBER() over (PARTITION by dept_id order by salary desc) rn
-
+select * 
+    , sum(salary) over(order by emp_id rows between 2 preceding and current row) as rolling_salary
+from employee;
 ```
 
-###

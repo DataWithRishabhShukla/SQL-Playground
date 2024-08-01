@@ -19,7 +19,22 @@ from employee;
 -- If we include the order by then it will give us the running salary 
 -- Where as with lead, lag we needed the order by clause
 
--- what's difference between below 
-    --,max(salary) over (order by emp_id) table_sal_max
-    --,max(salary) over (partition by dept_id) dept_dept_max
-    --,max(salary) over (partition by dept_id order by emp_id) running_dept_max
+
+select
+    max(salary) over (order by emp_id) table_sal_max
+    ,max(salary) over (partition by dept_id) dept_dept_max
+    ,max(salary) over (partition by dept_id order by emp_id) running_dept_max
+from employee ;
+
+
+select * 
+    , sum(salary) over(partition by dept_id) as dep_salary
+    , sum(salary) over(partition by dept_id order by emp_id) running_sum_salary
+    , sum(salary) over(order by emp_id) running_sum_salary
+from employee;
+
+
+select * 
+    , sum(salary) over(order by emp_id rows between 2 preceding and current row) as rolling_salary
+    , sum(salary) over(order by emp_id rows between 2 preceding and current row) as rolling_salary1
+from employee;
