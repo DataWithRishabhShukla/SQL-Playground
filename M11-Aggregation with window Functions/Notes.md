@@ -1,13 +1,8 @@
-## Day 14 - [Data Modelling]
+## Day 10 - [window function]
 
-### Data Modelling
-* Instead of storing the data redundently
-* We can create dimension for it 
-* We are storing customer information in orders tables 
-
-```sql
-
-```
+### window function
+* orderby is required
+* 
 
 
 ### Dimension Modelleing 
