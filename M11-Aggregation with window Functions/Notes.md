@@ -37,10 +37,14 @@ from employee;
     - rows between <> and <>
     - current row 
     - 2 preceding 
+    - 1 following
+    - unbounded preceding -> all the rows before current row
+    - unbounded following -> all the rows after the current row
     - order by is required
 ```sql
 select * 
     , sum(salary) over(order by emp_id rows between 2 preceding and current row) as rolling_salary
+    , sum(salary) over(order by emp_id rows between 1 preceding and 1 following) as rolling_salary1
 from employee;
 ```
 

@@ -36,5 +36,6 @@ from employee;
 
 select * 
     , sum(salary) over(order by emp_id rows between 2 preceding and current row) as rolling_salary
-    , sum(salary) over(order by emp_id rows between 2 preceding and current row) as rolling_salary1
+    , sum(salary) over(order by emp_id rows between 1 preceding and 1 following) as rolling_salary1
+    , sum(salary) over(order by emp_id rows between 5 following and 10 following) as rolling_salary12
 from employee;
