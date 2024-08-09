@@ -14,7 +14,15 @@
 -- cast(order_date as date) -> order_date::date
 
 -- 1- https://datalemur.com/questions/matching-skills
+SELECT candidate_id FROM candidates 
+where skill in ('Python','Tableau','PostgreSQL')
+group by candidate_id having count(distinct skill) = 3
+;
 -- 2- https://datalemur.com/questions/sql-page-with-no-likes
+SELECT p1.page_id  from pages p1 
+LEFT JOIN  page_likes p2
+on p1.page_id = p2.page_id 
+where p2.page_id is null ;
 -- 3- https://datalemur.com/questions/tesla-unfinished-parts
 -- 4- https://datalemur.com/questions/laptop-mobile-viewership
 -- 5- https://datalemur.com/questions/sql-average-post-hiatus-1
