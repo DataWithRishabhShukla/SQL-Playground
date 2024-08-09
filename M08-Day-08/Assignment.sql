@@ -72,3 +72,15 @@ SELECT app_id
 FROM events where extract(year from timestamp) = 2022 group by app_id ;
 
 -- 10-https://datalemur.com/questions/second-day-confirmation
+SELECT 
+user_id
+--, e.email_id
+-- , signup_date
+-- , action_date
+-- , extract(day from signup_date)
+-- , extract(day from action_date)
+FROM 
+emails e inner join texts t 
+on e.email_id = t.email_id
+where signup_action = 'Confirmed' and extract(day from action_date) - extract(day from signup_date) =1 
+;
