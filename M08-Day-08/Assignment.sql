@@ -47,6 +47,28 @@ where extract (month from sent_date) = 8 and extract (year from sent_date) = 202
 GROUP BY sender_id order by message_count desc limit 2 ;
 
 -- 7- https://datalemur.com/questions/completed-trades
+SELECT city 
+, count(*) as total_orders
+FROM trades t
+JOIN users u on t.user_id =  u.user_id
+where status = 'Completed'  group by city order by total_orders desc  limit 3;
+
 -- 8- https://datalemur.com/questions/sql-avg-review-ratings
+SELECT
+EXTRACT( month from submit_date) mth
+, product_id product
+, round(avg(stars) ,2)as avg_stars
+FROM reviews
+group by EXTRACT( month from submit_date),product_id
+order by mth ,product
+;
+
 -- 9- https://datalemur.com/questions/click-through-rate
+
+SELECT app_id 
+-- ,sum(case when event_type ='impression' then 1 else 0 end) num_impression
+-- ,sum(case when event_type ='click' then 1 else 0 end) num_click
+, round(100.0 * sum(case when event_type ='click' then 1 else 0 end)/sum(case when event_type ='impression' then 1 else 0 end),2) ctr
+FROM events where extract(year from timestamp) = 2022 group by app_id ;
+
 -- 10-https://datalemur.com/questions/second-day-confirmation
